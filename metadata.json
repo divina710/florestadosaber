@@ -1,0 +1,6 @@
+{
+  "name": "Floresta do Saber",
+  "description": "Ambiente interativo de aprendizagem para o ensino médio guiado pela Onça-Pintada e animais guardiões da fauna brasileira com quizzes, flashcards e videoaulas.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
