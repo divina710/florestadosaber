@@ -1,0 +1,35 @@
+{
+  "entities": {
+    "RankingEntry": {
+      "title": "RankingEntry",
+      "description": "Registro de pontuação de jogador exibido na tabela de classificação em tempo real.",
+      "type": "object",
+      "properties": {
+        "nome": {
+          "type": "string",
+          "description": "Nome do jogador exibido no ranking.",
+          "minLength": 2,
+          "maxLength": 40
+        },
+        "pontuacao": {
+          "type": "number",
+          "description": "Pontuação numérica estritamente positiva do jogador."
+        },
+        "criadoEm": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp do servidor utilizado para ordenação e critério de desempate (quem atingiu primeiro fica na frente)."
+        }
+      },
+      "required": ["nome", "pontuacao", "criadoEm"]
+    }
+  },
+  "firestore": {
+    "/ranking/{rankingId}": {
+      "schema": {
+        "$ref": "#/entities/RankingEntry"
+      },
+      "description": "Coleção pública do ranking Top 10 ordenada por maior pontuação e menor timestamp criadoEm em caso de empate."
+    }
+  }
+}

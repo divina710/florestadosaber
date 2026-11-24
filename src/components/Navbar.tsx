@@ -17,7 +17,6 @@ import {
   UserPlus,
   ShieldCheck,
   Crown,
-  Lock,
 } from 'lucide-react';
 import { soundManager } from '../utils/soundEffects';
 import { UserStats, StudentUser } from '../types';
@@ -165,7 +164,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 soundManager.playClick();
                 onNavigate('ranking');
               }}
-              title={currentUser ? 'Ver Ranking da Selva (Top 10 Global)' : 'Ranking da Selva (Exclusivo para usuários logados)'}
+              title="Ver Ranking da Selva ao vivo (Top 10 Firestore)"
               className={`flex items-center space-x-1.5 px-3.5 py-2 rounded-xl text-sm font-medium transition-all ${
                 activeView === 'ranking'
                   ? 'bg-amber-100/90 text-amber-900 dark:bg-amber-950/60 dark:text-amber-200 font-semibold shadow-xs'
@@ -174,7 +173,6 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Crown className="w-4 h-4 text-amber-500" />
               <span>Ranking</span>
-              {!currentUser && <Lock className="w-3 h-3 text-slate-400" />}
             </button>
 
             <button

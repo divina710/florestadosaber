@@ -16,6 +16,7 @@ import { DailyStreakModal } from './components/DailyStreakModal';
 import { LoginPage } from './components/LoginPage';
 import { AdminDashboard } from './components/AdminDashboard';
 import { RankingDaSelva } from './components/RankingDaSelva';
+import { RankingErrorBoundary } from './components/RankingErrorBoundary';
 import { CelebrationParticles, CelebrationEvent } from './components/CelebrationParticles';
 import { soundManager } from './utils/soundEffects';
 import { syncStreakOnLoad, registerDailyCheckIn } from './utils/streakManager';
@@ -523,32 +524,39 @@ export default function App() {
           />
         )}
 
-        {/* VIEW 5: RANKING DA SELVA (EXCLUSIVO PARA USUÁRIOS LOGADOS) */}
+        {/* VIEW 5: RANKING DA SELVA (FIRESTORE AO VIVO - TOP 10) */}
         {activeView === 'ranking' && (
-          <RankingDaSelva
-            currentUser={currentUser}
-            userStats={userStats}
-            onOpenLogin={() => {
-              setActiveView('login');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-            onOpenRegister={() => {
-              setActiveView('register');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
+          <RankingErrorBoundary
             onBackToHome={() => {
               setActiveView('welcome');
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            onGoToChallenge={() => {
-              setActiveView('challenge');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-            onGoToSubjects={() => {
-              setActiveView('subjects');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-          />
+          >
+            <RankingDaSelva
+              currentUser={currentUser}
+              userStats={userStats}
+              onOpenLogin={() => {
+                setActiveView('login');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              onOpenRegister={() => {
+                setActiveView('register');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              onBackToHome={() => {
+                setActiveView('welcome');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              onGoToChallenge={() => {
+                setActiveView('challenge');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              onGoToSubjects={() => {
+                setActiveView('subjects');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+            />
+          </RankingErrorBoundary>
         )}
 
         {/* VIEW 6: PAINEL DO ADMINISTRADOR */}

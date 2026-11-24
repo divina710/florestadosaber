@@ -177,7 +177,7 @@ export const MascotWelcome: React.FC<MascotWelcomeProps> = ({
               </button>
 
               {/* Ranking da Selva CTA */}
-              {onOpenRanking && currentUser && (
+              {onOpenRanking && (
                 <button
                   id="hero-ranking-btn"
                   onClick={() => {
